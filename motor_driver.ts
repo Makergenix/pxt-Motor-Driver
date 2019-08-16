@@ -23,10 +23,7 @@ namespace MotorDriver {
     let PWMB = AnalogPin.P16
     let BIN1 = DigitalPin.P14
     let BIN2 = DigitalPin.P15
-    // let S0_PIN = AnalogPin.P0
-    // let S1_PIN = AnalogPin.P1
-    // let S2_PIN = AnalogPin.P2
-    let SPINs = [AnalogPin.P0, AnalogPin.P1, AnalogPin.P2];
+    let SPINs = [AnalogPin.P0, AnalogPin.P1, AnalogPin.P2]
     
     
     /**
@@ -60,6 +57,10 @@ namespace MotorDriver {
         }
     }
 
+    /**
+     * Stop DC Motor
+     * @param motor Motor; eg: A, B
+     */
     //% blockId=MotorStop
     //% block="Motor %Motor| Stop"
     //% weight=90
@@ -70,37 +71,29 @@ namespace MotorDriver {
             pins.analogWritePin(PWMB, 0)
     }
 
+    /**
+     * Stop Servo Motor
+     * @param servo Servo Number; eg: S0, S1, S2
+     */
     //% blockId=ServoStop
     //% block="Servos %s| Stop"
-    //% weight=69 
-    export function ServoStop(s: Servo): void {
-        pins.servoSetPulse(SPINs[s], 0)
-        // if (s == Servo.S0)
-        //     pins.servoSetPulse(S0_PIN, 0)
-        // else if (s == Servo.S1)
-        //     pins.servoSetPulse(S1_PIN, 0)
-        // else
-        //     pins.servoSetPulse(S2_PIN, 0)
+    //% weight=60
+    export function ServoStop(servo: Servo): void {
+        pins.servoSetPulse(SPINs[servo], 0)
     }
 
     /**
-	 * Servo TurnAngle
+	 * Rotate servo
 	 * @param angle [0-180] speed of Motor; eg: 180, 0, 180
 	*/
     //% blockId=ServoTurnAngle
     //% block="Servos %s| Turn Angle %angle"
-    //% weight=60 
+    //% weight=70
     //% angle.min=0 angle.max=180
-    export function ServoTurnAngle(s: Servo, angle: number): void {
-        let temp = 0
-        temp = angle * 10 + 500 //0.5ms - 2.5ms
-        pins.servoSetPulse(SPINs[s], temp)
-        // if (s == Servo.S0)
-        //     pins.servoSetPulse(S0_PIN, temp)
-        // else if (s == Servo.S1)
-        //     pins.servoSetPulse(S1_PIN, temp)
-        // else
-        //     pins.servoSetPulse(S2_PIN, temp)
+    export function ServoTurnAngle(servo: Servo, angle: number): void {
+        let delta_angle = 0
+        delta_angle = angle * 10 + 500 //0.5ms - 2.5ms
+        pins.servoSetPulse(SPINs[servo], delta_angle)
     }
 
 }

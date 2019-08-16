@@ -2,6 +2,13 @@
 
 Block extension for Motor Driver
 
+Motor Driver is compatible for 2 DC motors and 3 Servos. Motor Driver IC TB 6612FNG is used to control DC motor.
+
+## PINS
+Pin 0, Pin 1, and Pin 3 can be used as GPIOs as well as for Servos.
+Pin 8 and Pin 16 are PWM for Motor A and Motor B respectively, for controlling speed
+Pin 13, Pin 12, Pin 14, adn Pin 15 are Motor A and Motor B inputs.  
+
 ## TODO
 
 - [ ] Add a reference for your blocks here
